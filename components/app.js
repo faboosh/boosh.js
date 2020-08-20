@@ -16,8 +16,12 @@ export const App = new Component({
         eventTest(e) {
             console.log('I am bound to a button');
             let newState = {...this.data};
-            
-            console.log(this.setState());
+
+            console.log(this.binds);
+
+            newState.test = "Someone just clicked a button!";
+
+            this.setState(newState);
         }
     },
     template:  [
@@ -25,9 +29,7 @@ export const App = new Component({
             [
                 ['br'],
                 ['b', 'test2'],
-                ['br'],
                 ['Test'],
-                ['br'],
                 ['p', 'funcTest'],
                 ['button', 'Click me', 
                     {
