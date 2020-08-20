@@ -19,9 +19,13 @@ export const App = new Component({
             return "this one even renders from a method in the parent, after the child component"
         },
         eventTest(e) {
-            let newState = {...this.data};
+            let newState = {...this._data};
+            e.preventDefault();
             newState.test = "Someone just clicked a button!";
-            this.setState(newState);
+            this.setData(newState);
+        },
+        referenceTest() {
+            this.getDate('test', this);
         },
         templateThing() {
             return Fragment(
@@ -45,7 +49,18 @@ export const App = new Component({
         }
     },
     template:  [
-        'templateThing',
+        [
+            'p', 'test',
+                [
+                    ['b', 'wow']
+                ]
+        ],
+        [
+            'button', 'clickyclicky', 
+            {
+                onclick: "eventTest"
+            }
+        ],
         ['Test']
     ]
 })
