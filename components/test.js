@@ -10,11 +10,8 @@ export const Test = new Component({
             return "with its own method"
         }
     },
-    template: 
-        `
-            <p>{{test}}
-                <b> {{test2}}</b> 
-                that parses correctly, {{funcTest}}
-            </p>
-        `
+    template:  [
+        ['p', 'I am a child component'],
+        ['p', 'funcTest'],
+    ]
 })

@@ -11,21 +11,37 @@ export const App = new Component({
     },
     methods: {
         funcTest() {
-            return "this one even renders from a function"
+            return "this one even renders from a method in the parent, after the child component"
+        },
+        eventTest(e) {
+            console.log('I am bound to a button')
+            console.log(e);
         }
     },
-    template: 
-        `
-            [Test]
-            [Test]
-            <p>{{test}}
-                <b> {{test2}}</b>
-                 that parses correctly, 
-                 {{funcTest}}
-            </p>
-        `,
-    templateRedux: [
-        ['p', {}]
+    template:  [
+        ['p', 'test',
+            [
+                ['br'],
+                ['b', 'test2'],
+                ['br'],
+                ['Test'],
+                ['br'],
+                ['p', 'funcTest'],
+                ['button', 'Click me', 
+                    {
+                        onclick: "eventTest", 
+                        style: 
+                            `
+                                background: #2222dd; 
+                                color: white; 
+                                border: none; 
+                                padding: 10px; 
+                                border-radius: 5px
+                            `
+                    }
+                ]
+            ]
+        ]
     ]
 })
 
