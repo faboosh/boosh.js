@@ -14,8 +14,10 @@ export const App = new Component({
             return "this one even renders from a method in the parent, after the child component"
         },
         eventTest(e) {
-            console.log('I am bound to a button')
-            console.log(e);
+            console.log('I am bound to a button');
+            let newState = {...this.data};
+            
+            console.log(this.setState());
         }
     },
     template:  [
