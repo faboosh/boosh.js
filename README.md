@@ -1,5 +1,5 @@
 # What is boosh.js?
-Boosh.js is a small frontend framework built purely for educational purposes
+Boosh.js is a small frontend framework with no dependencies built purely for educational purposes
 
 ## Current features
 * Component based architecture
