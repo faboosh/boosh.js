@@ -1,4 +1,5 @@
 import { Component } from "../lib/component.js";
+import { Fragment } from "../lib/core.js";
 import { Test } from "./test.js";
 
 export const App = new Component({
@@ -7,45 +8,45 @@ export const App = new Component({
     },
     data: {
         test: "wow, templating",
-        test2: "bad boi templating"
+        test2: "bad boi templating",
+        arrayTest: [
+            'this is an array',
+            'it has multiple items'
+        ]
     },
     methods: {
         funcTest() {
             return "this one even renders from a method in the parent, after the child component"
         },
         eventTest(e) {
-            console.log('I am bound to a button');
             let newState = {...this.data};
-
-            console.log(this.binds);
-
             newState.test = "Someone just clicked a button!";
-
             this.setState(newState);
+        },
+        templateThing() {
+            return Fragment(
+                this.data.arrayTest.map(
+                    item => 
+                        [
+                            'p', 
+                            item, 
+                            {
+                                style: 
+                                    `
+                                        background: hotpink; 
+                                        color: white;
+                                        padding: 10px; 
+                                        border-radius: 5px
+                                    `
+                            }
+                        ]
+                    )
+                );
         }
     },
     template:  [
-        ['p', 'test',
-            [
-                ['br'],
-                ['b', 'test2'],
-                ['Test'],
-                ['p', 'funcTest'],
-                ['button', 'Click me', 
-                    {
-                        onclick: "eventTest", 
-                        style: 
-                            `
-                                background: #2222dd; 
-                                color: white; 
-                                border: none; 
-                                padding: 10px; 
-                                border-radius: 5px
-                            `
-                    }
-                ]
-            ]
-        ]
+        'templateThing',
+        ['Test']
     ]
 })
 
